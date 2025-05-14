@@ -1,0 +1,104 @@
+.all-movies-page {
+  padding: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.all-movies-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* 🎯 Стилизация фильтра */
+.filter-bar {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.genre-select {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background-color: #f8f9fa;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.genre-select:hover {
+  background-color: #e2e6ea;
+}
+
+.genre-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff66;
+}
+
+/* 🎬 Сетка: 4 фильма в ряд */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  margin-top: 2rem;
+}
+
+/* 📦 Карточки фильмов */
+.movie-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.movie-card h3 {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.movie-card p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+/* 📱 Адаптация для планшетов и мобилок */
+@media (max-width: 1200px) {
+  .movies-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .movies-grid {
+    grid-template-columns: 1fr;
+  }
+}

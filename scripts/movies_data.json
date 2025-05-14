@@ -1,0 +1,29 @@
+{
+  "genres": [
+    { "id": 28, "name": "Action" },
+    { "id": 12, "name": "Adventure" },
+    { "id": 35, "name": "Comedy" }
+  ],
+  "movies": [
+    {
+      "id": 1,
+      "title": "The Example Movie",
+      "description": "An example movie description.",
+      "release_year": 2023,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": "/example.jpg",
+      "genre_ids": [28, 35]
+    },
+    {
+      "id": 2,
+      "title": "Another Test Film",
+      "description": "Another exciting example.",
+      "release_year": 2022,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": null,
+      "genre_ids": [12]
+    }
+  ]
+}

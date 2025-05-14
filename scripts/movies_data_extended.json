@@ -1,0 +1,176 @@
+{
+  "genres": [
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 16,
+      "name": "Animation"
+    },
+    {
+      "id": 35,
+      "name": "Comedy"
+    },
+    {
+      "id": 80,
+      "name": "Crime"
+    },
+    {
+      "id": 18,
+      "name": "Drama"
+    },
+    {
+      "id": 10749,
+      "name": "Romance"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 9648,
+      "name": "Mystery"
+    },
+    {
+      "id": 27,
+      "name": "Horror"
+    }
+  ],
+  "movies": [
+    {
+      "id": 1001,
+      "title": "Test Movie 1",
+      "description": "Description for test movie 1.",
+      "release_year": 2021,
+      "country": "USA",
+      "age_rating": "R",
+      "poster_path": "/poster1.jpg",
+      "genre_ids": [
+        12,
+        16
+      ]
+    },
+    {
+      "id": 1002,
+      "title": "Test Movie 2",
+      "description": "Description for test movie 2.",
+      "release_year": 2022,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": "/poster2.jpg",
+      "genre_ids": [
+        16,
+        35
+      ]
+    },
+    {
+      "id": 1003,
+      "title": "Test Movie 3",
+      "description": "Description for test movie 3.",
+      "release_year": 2023,
+      "country": "USA",
+      "age_rating": "R",
+      "poster_path": "/poster3.jpg",
+      "genre_ids": [
+        35,
+        80
+      ]
+    },
+    {
+      "id": 1004,
+      "title": "Test Movie 4",
+      "description": "Description for test movie 4.",
+      "release_year": 2024,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": "/poster4.jpg",
+      "genre_ids": [
+        80,
+        18
+      ]
+    },
+    {
+      "id": 1005,
+      "title": "Test Movie 5",
+      "description": "Description for test movie 5.",
+      "release_year": 2020,
+      "country": "USA",
+      "age_rating": "R",
+      "poster_path": "/poster5.jpg",
+      "genre_ids": [
+        18,
+        10749
+      ]
+    },
+    {
+      "id": 1006,
+      "title": "Test Movie 6",
+      "description": "Description for test movie 6.",
+      "release_year": 2021,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": "/poster6.jpg",
+      "genre_ids": [
+        10749,
+        878
+      ]
+    },
+    {
+      "id": 1007,
+      "title": "Test Movie 7",
+      "description": "Description for test movie 7.",
+      "release_year": 2022,
+      "country": "USA",
+      "age_rating": "R",
+      "poster_path": "/poster7.jpg",
+      "genre_ids": [
+        878,
+        9648
+      ]
+    },
+    {
+      "id": 1008,
+      "title": "Test Movie 8",
+      "description": "Description for test movie 8.",
+      "release_year": 2023,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": "/poster8.jpg",
+      "genre_ids": [
+        9648,
+        27
+      ]
+    },
+    {
+      "id": 1009,
+      "title": "Test Movie 9",
+      "description": "Description for test movie 9.",
+      "release_year": 2024,
+      "country": "USA",
+      "age_rating": "R",
+      "poster_path": "/poster9.jpg",
+      "genre_ids": [
+        27,
+        28
+      ]
+    },
+    {
+      "id": 1010,
+      "title": "Test Movie 10",
+      "description": "Description for test movie 10.",
+      "release_year": 2020,
+      "country": "USA",
+      "age_rating": "PG-13",
+      "poster_path": "/poster10.jpg",
+      "genre_ids": [
+        28,
+        12
+      ]
+    }
+  ]
+}

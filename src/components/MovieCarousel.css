@@ -1,0 +1,57 @@
+.movie-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  max-width: 1000px; /* было 800px */
+  padding: 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-card {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+}
+
+.carousel-card img {
+  width: 250px; /* было 200px */
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.movie-info {
+  text-align: left;
+  flex: 1;
+  font-size: 1rem;
+}
+
+.movie-info h3 {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+}
+
+.controls {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.controls button {
+  background-color: #007bff;
+  border: none;
+  padding: 12px 16px;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.controls button:hover {
+  background-color: #0056b3;
+}

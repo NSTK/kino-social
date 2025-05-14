@@ -1,0 +1,25 @@
+{
+  "genres": [
+    { "id": 28, "name": "Action" },
+    { "id": 12, "name": "Adventure" },
+    { "id": 35, "name": "Comedy" }
+  ],
+  "movies": [
+    {
+      "id": 1,
+      "title": "The Example Movie",
+      "overview": "An example movie description.",
+      "release_date": "2023-11-10",
+      "poster_path": "/example.jpg",
+      "genre_ids": [28, 12]
+    },
+    {
+      "id": 2,
+      "title": "Another Test Film",
+      "overview": "Another exciting example.",
+      "release_date": "2022-05-01",
+      "poster_path": null,
+      "genre_ids": [35]
+    }
+  ]
+}

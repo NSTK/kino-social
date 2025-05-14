@@ -1,31 +1,57 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
+import HomePage from './pages/HomePage';
+import ProfilePage from './pages/ProfilePage';
+import FriendsPage from './pages/FriendsPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import AllMoviesPage from './pages/AllMoviesPage';
 import Header from './components/Header';
-import Recommendations from './components/Recommendations';
-import Profile from './components/Profile';
-import ProfilePage from './components/ProfilePage';
-import FriendsPage from './components/FriendsPage';
 import Footer from './components/Footer';
-import './App.css';
 
-const App = () => {
+function AppLayout() {
+  const { user } = useAuth();
+  const location = useLocation();
+
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
   return (
-    <Router>
-      <div className="app-container">
-        <Header />
-        <main className="main">
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<><Recommendations /><Profile /></>} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/friends" element={<FriendsPage />} />
-            </Routes>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    </Router>
-  );
-};
+    <>
+      {!isAuthPage && user && <Header />}
 
-export default App;
+      <main className="main">
+        <div className="container">
+          <Routes>
+            {!user ? (
+              <>
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="*" element={<LoginPage />} />
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/friends" element={<FriendsPage />} />
+                <Route path="/movies" element={<AllMoviesPage />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </>
+            )}
+          </Routes>
+        </div>
+      </main>
+
+      {!isAuthPage && user && <Footer />}
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <div className="app-container">
+      <Router>
+        <AppLayout />
+      </Router>
+    </div>
+  );
+}
