@@ -42,7 +42,43 @@
   box-shadow: 0 0 0 2px #007bff66;
 }
 
-/* 🎬 Сетка: 4 фильма в ряд */
+.year-input {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background-color: #f8f9fa;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.year-input:hover {
+  background-color: #e2e6ea;
+}
+
+.year-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #007bff66;
+}
+
+.reset-button {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background-color: #dc3545;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #c82333;
+}
+
+/* 🎮 Сетка: 4 фильма в ряд */
 .movies-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

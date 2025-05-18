@@ -64,8 +64,9 @@ app.post('/api/login', (req, res) => {
 
 // ✅ Получение фильмов с фильтрацией
 app.get('/api/movies', (req, res) => {
-  const limit = parseInt(req.query.limit) || 15;
+  const rawLimit = req.query.limit;
   const filter = req.query.filter || null;
+  const limit = rawLimit === '0' ? null : parseInt(rawLimit) || 15;
 
   let filterCondition = '';
   if (filter === 'classic') {
@@ -75,14 +76,23 @@ app.get('/api/movies', (req, res) => {
   }
 
   const sql = `
-    SELECT m.*, GROUP_CONCAT(g.Name SEPARATOR ', ') AS genres
+    SELECT 
+      m.*, 
+      GROUP_CONCAT(DISTINCT g.Name SEPARATOR ', ') AS genres,
+      GROUP_CONCAT(DISTINCT d.Name SEPARATOR ', ') AS directors
     FROM Movies m
     LEFT JOIN Movies_has_Genres mg ON m.Movie_id = mg.Movies_Movie_id
     LEFT JOIN Genres g ON mg.Genres_Genres_id = g.Genres_id
-    WHERE m.Release_year IS NOT NULL ${filterCondition}
+    LEFT JOIN Movies_has_Directors md ON m.Movie_id = md.Movies_Movie_id
+    LEFT JOIN Directors d ON md.Directors_Directors_id = d.Directors_id
+    WHERE m.Release_year IS NOT NULL
+      AND m.Poster_path IS NOT NULL
+      AND m.Poster_path != ''
+      AND m.Title REGEXP '[А-Яа-яЁё]'
+      ${filterCondition}
     GROUP BY m.Movie_id
     ORDER BY m.Release_year ASC
-    LIMIT ${mysql.escape(limit)}
+    ${limit ? 'LIMIT ' + mysql.escape(limit) : ''}
   `;
 
   db.query(sql, (err, results) => {
@@ -101,6 +111,19 @@ app.get('/api/genres', (req, res) => {
   db.query(sql, (err, results) => {
     if (err) {
       console.error('❌ Ошибка при получении жанров:', err);
+      return res.status(500).json({ error: 'Ошибка сервера' });
+    }
+    res.json(results);
+  });
+});
+
+// ✅ Получение всех режиссёров
+app.get('/api/directors', (req, res) => {
+  const sql = 'SELECT Directors_id, Name FROM Directors ORDER BY Name';
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('❌ Ошибка при получении режиссёров:', err);
       return res.status(500).json({ error: 'Ошибка сервера' });
     }
     res.json(results);
@@ -161,6 +184,39 @@ app.post('/api/friends', (req, res) => {
       return res.status(500).json({ error: 'Ошибка при добавлении в друзья' });
     }
     res.status(200).json({ message: 'Друг добавлен' });
+  });
+});
+
+// ✅ Получение одного фильма по ID
+app.get('/api/movies/:id', (req, res) => {
+  const movieId = req.params.id;
+
+  const sql = `
+    SELECT 
+      m.*, 
+      GROUP_CONCAT(DISTINCT g.Name SEPARATOR ', ') AS genres,
+      GROUP_CONCAT(DISTINCT d.Name SEPARATOR ', ') AS directors,
+      GROUP_CONCAT(DISTINCT a.Name SEPARATOR ', ') AS actors
+    FROM Movies m
+    LEFT JOIN Movies_has_Genres mg ON m.Movie_id = mg.Movies_Movie_id
+    LEFT JOIN Genres g ON mg.Genres_Genres_id = g.Genres_id
+    LEFT JOIN Movies_has_Directors md ON m.Movie_id = md.Movies_Movie_id
+    LEFT JOIN Directors d ON md.Directors_Directors_id = d.Directors_id
+    LEFT JOIN Movies_has_Actors ma ON m.Movie_id = ma.Movies_Movie_id
+    LEFT JOIN Actors a ON ma.Actors_Actor_id = a.Actor_id
+    WHERE m.Movie_id = ?
+    GROUP BY m.Movie_id
+  `;
+
+  db.query(sql, [movieId], (err, results) => {
+    if (err) {
+      console.error('❌ Ошибка при получении фильма:', err);
+      return res.status(500).json({ error: 'Ошибка сервера' });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'Фильм не найден' });
+    }
+    res.json(results[0]);
   });
 });
 

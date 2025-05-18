@@ -7,6 +7,7 @@ import FriendsPage from './pages/FriendsPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import AllMoviesPage from './pages/AllMoviesPage';
+import MoviePage from './pages/MoviePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -34,6 +35,7 @@ function AppLayout() {
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/friends" element={<FriendsPage />} />
                 <Route path="/movies" element={<AllMoviesPage />} />
+                <Route path="/movie/:id" element={<MoviePage />} />
                 <Route path="*" element={<Navigate to="/" />} />
               </>
             )}
